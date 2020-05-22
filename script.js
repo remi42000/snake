@@ -107,7 +107,7 @@ let snakeY = snake[0].y;
         } 
          else {
            //ctx.fillStyle = ( i == 0 )? snakeheadImg.src : "black";
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "blue";
             ctx.fillRect(snake[i].x,snake[i].y,elementWidth,elementHeight);
             
             ctx.strokeStyle = "red";
