@@ -98,6 +98,8 @@ let score = 0;
 
 let d;
 
+
+
 document.addEventListener("keydown", direction);
 
 function direction(event) {
@@ -110,6 +112,7 @@ function direction(event) {
         d = "RIGHT";
     } else if (key == 40 && d != "UP") {
         d = "DOWN";
+        
     }
 }
 
@@ -208,11 +211,14 @@ function draw(recursive = false, isFriend = null) {
         // clearInterval(game);
         // snake.clear();
         gameSpeed = 100;
-        snake = [];
-        snake[0] = {
-            x: elementWidth * (boxXelements / 2),
-            y: elementHeight * (boxYelements / 2)
-        };
+    
+
+        //snake respawn in center on canvas
+    //    snake = [];
+    //    snake[0] = {
+    //        x: elementWidth * (boxXelements / 2),
+    //        y: elementHeight * (boxYelements / 2)
+    //    };
 
         score = 0;
 
@@ -231,27 +237,33 @@ function draw(recursive = false, isFriend = null) {
     ctx.font = "30px Arial";
     ctx.strokeText("Score: " + score, 10, 50);
 
-    if (score >= 20) {
+    if (score >= 15) {
         gameSpeed = 90;
-        clearInterval(game);
-        game = setInterval(draw, gameSpeed);
+     //   clearInterval(game);
+     //   game = setInterval(draw, gameSpeed);
     } else if (score >= 30) {
         gameSpeed = 80;
-        clearInterval(game);
-        game = setInterval(draw, gameSpeed);
+      //  clearInterval(game);
+      //  game = setInterval(draw, gameSpeed);
     } else if (score >= 40) {
         gameSpeed = 70;
-        clearInterval(game);
-        game = setInterval(draw, gameSpeed);
+       // clearInterval(game);
+       // game = setInterval(draw, gameSpeed);
     } else if (score >= 50) {
         gameSpeed = 60;
-        clearInterval(game);
-        game = setInterval(draw, gameSpeed);
+      //  clearInterval(game);
+    //game = setInterval(draw, gameSpeed);
     } else if (score >= 60) {
         gameSpeed = 50;
-        clearInterval(game);
-        game = setInterval(draw, gameSpeed);
+       // clearInterval(game);
+      //  game = setInterval(draw, gameSpeed);
+    } else if (score >= 70) {
+        gameSpeed = 40;
+       // clearInterval(game);
+        //game = setInterval(draw, gameSpeed);
     }
+     clearInterval(game);
+        game = setInterval(draw, gameSpeed);
 
     // Create grid
 
