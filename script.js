@@ -210,7 +210,7 @@ function draw(recursive = false, isFriend = null) {
 
         // clearInterval(game);
         // snake.clear();
-        gameSpeed = 100;
+          gameSpeed = 100;
     
 
         //snake respawn in center on canvas
@@ -237,8 +237,8 @@ function draw(recursive = false, isFriend = null) {
     ctx.font = "30px Arial";
     ctx.strokeText("Score: " + score, 10, 50);
 
-    if (score >= 15) {
-        gameSpeed = 90;
+    if (score >= 10) {
+        gameSpeed = 50;
      //   clearInterval(game);
      //   game = setInterval(draw, gameSpeed);
     } else if (score >= 30) {
