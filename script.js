@@ -46,12 +46,11 @@ snake[0] = {
     y: elementHeight * (boxYelements / 2)
 };
 
-
 function createFriend() {
     var _x = Math.floor(Math.random() * boxXelements) * elementWidth;
     var _y = Math.floor(Math.random() * boxYelements) * elementHeight;
-
-
+    
+    
     var match = false;
 
     for (var i = 0; i < snake.length; i++) {
@@ -126,8 +125,7 @@ function collision(head, array) {
     }
     return false;
 }
-
-// draw everything to the canvas
+//everything to the canvas
 const enemies = 3;
 function draw(recursive = false, isFriend = null) {
     // old head position
@@ -203,7 +201,7 @@ function draw(recursive = false, isFriend = null) {
     }
 
     // game over
-
+    // adding GAME OVER, refresh the page!
 
     if (snakeX <= -1 || snakeX >= boxWidth || snakeY <= -1 || snakeY >= boxHeight) {
         //f(snakeX <= 0 || snakeX >= boxWidth|| snakeY <= 0|| snakeY >= boxHeight || collision(newHead,snake)){
@@ -219,6 +217,9 @@ function draw(recursive = false, isFriend = null) {
     //        x: elementWidth * (boxXelements / 2),
     //        y: elementHeight * (boxYelements / 2)
     //    };
+
+    
+    ctx.strokeText("GAME OVER " , 10, 50);
 
         score = 0;
 
