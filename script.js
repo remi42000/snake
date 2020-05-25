@@ -1,6 +1,6 @@
 //youtube channel : Code Explained
 // Code The Snake Game Using JavaScript and HTML5
-
+// put double snake
 var gameSpeed = 100;
 
 const boxWidth = 600;  //600    
@@ -15,16 +15,19 @@ const boxEnemyCount = 5;
 const boxFriendCount = 50;
 const backGroundColor = "green";
 var cvs = document.createElement('canvas');
+  
+// load audio files 
 
+let dead = new Audio();
+  
+
+
+dead.src = "audio/dead.mp3";
+ 
 cvs.id = "gameCanvas";
 cvs.width = boxWidth;
 cvs.height = boxHeight;
-//cvs.style.border = "1px solid";
-//cvs.style.display = "block";  
-//cvs.style.margin = "0 auto"; // cvs.style.margin = "0 auto";
-//cvs.style.margin = "-21px 0px 0px -21px";
-//cvs.style.background = backGroundColor;
-//cvs.style.padding = "0px";
+
 var body = document.getElementById("gameBox");
 body.appendChild(cvs);
 
@@ -54,9 +57,12 @@ function createFriend() {
     var match = false;
 
     for (var i = 0; i < snake.length; i++) {
-        tail = snake[i];
+         
+         tail = snake[i];
         if (tail.x == _x || tail.y == _y) {
             match = true;
+         //   if (snake.length) <1 
+        
         }
     }
 
@@ -107,10 +113,11 @@ function direction(event) {
         d = "LEFT";
     } else if (key == 38 && d != "DOWN") {
         d = "UP";
-    } else if (key == 39 && d != "LEFT") {
-        d = "RIGHT";
+            } else if (key == 39 && d != "LEFT") {
+        d = "RIGHT"   
     } else if (key == 40 && d != "UP") {
         d = "DOWN";
+        
         
     }
 }
@@ -136,12 +143,14 @@ function draw(recursive = false, isFriend = null) {
     ctx.fillRect(0, 0, boxWidth, boxHeight);
 
     for (let i = 1; i < snake.length; i++) {
+        
         ctx.fillStyle = "blue";
         ctx.fillRect(snake[i].x, snake[i].y, elementWidth, elementHeight);
-
+        
         ctx.strokeStyle = "red";
-        ctx.strokeRect(snake[i].x, snake[i].y, elementWidth, elementHeight);
-    }
+        ctx.strokeRect(snake[i].x, snake[i].y, elementWidth, elementHeight);  
+    
+     }
     ctx.drawImage(snakeheadImg, snake[0].x, snake[0].y, elementWidth, elementHeight);
 
     for (let i = 0; i < friends.length; i++) {
@@ -149,9 +158,10 @@ function draw(recursive = false, isFriend = null) {
     }
 
     ctx.drawImage(enemyImg, enemy.x, enemy.y, elementWidth, elementHeight);
-
+            
 
     // which direction
+     
     if (d == "LEFT") snakeX -= elementWidth;
     if (d == "UP") snakeY -= elementHeight;
     if (d == "RIGHT") snakeX += elementWidth;
@@ -160,6 +170,7 @@ function draw(recursive = false, isFriend = null) {
     if (d == "W") snakeY -= elementHeight;
     if (d == "D") snakeX += elementWidth;
     if (d == "S") snakeY += elementHeight;
+
     let foundfriend = false;
     let foundenemy = false;
     // if the snake eats the friend
@@ -205,12 +216,17 @@ function draw(recursive = false, isFriend = null) {
 
     if (snakeX <= -1 || snakeX >= boxWidth || snakeY <= -1 || snakeY >= boxHeight) {
         //f(snakeX <= 0 || snakeX >= boxWidth|| snakeY <= 0|| snakeY >= boxHeight || collision(newHead,snake)){
-
+            dead.play();
         // clearInterval(game);
         // snake.clear();
           gameSpeed = 100;
     
-
+        if (snake.length == 0) {
+            ctx.strokeText("GAME OVER " , 10, 50);
+        } else{
+            ctx.strokeText("Score: " + score, 10, 50);
+        }
+          
         //snake respawn in center on canvas
     //    snake = [];
     //    snake[0] = {
@@ -219,14 +235,14 @@ function draw(recursive = false, isFriend = null) {
     //    };
 
     
-    ctx.strokeText("GAME OVER " , 10, 50);
 
-        score = 0;
-
-        return;
+    score = 0;
+    return;
+        
     }
 
     snake.unshift(newHead);
+    
 
     if (foundfriend) {
         draw(true, true);
@@ -282,6 +298,8 @@ function draw(recursive = false, isFriend = null) {
      }
      
      */
+    
+    
 }
 
 // call draw function every 100 ms
