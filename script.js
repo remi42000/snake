@@ -305,3 +305,5 @@ function draw(recursive = false, isFriend = null) {
 // call draw function every 100 ms
 
 let game = setInterval(draw, gameSpeed);
+
+//hello world
