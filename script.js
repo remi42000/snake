@@ -254,7 +254,7 @@ function draw(recursive = false, isFriend = null) {
     ctx.font = "30px Arial";
     ctx.strokeText("Score: " + score, 10, 50);
 
-    if (score >= 10) {
+    if (score >= 11) {
         gameSpeed = 50;
      //   clearInterval(game);
      //   game = setInterval(draw, gameSpeed);
