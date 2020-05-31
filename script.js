@@ -222,7 +222,7 @@ function draw(recursive = false, isFriend = null) {
           gameSpeed = 100;
     
         if (snake.length == 0) {
-            ctx.strokeText("GAME OVER " , 10, 50);
+            ctx.strokeText("GAME OVER!! " , 10, 50);
         } else{
             ctx.strokeText("Score: " + score, 10, 50);
         }
