@@ -35,12 +35,12 @@ const ctx = cvs.getContext("2d");
 
 
 const friendImg = new Image();
-friendImg.src = "friend.png";
+friendImg.src = "/img2/friend.png";
 const enemyImg = new Image();
-enemyImg.src = "enemy.png";
+enemyImg.src = "/img2/enemy.png";
 
 const snakeheadImg = new Image();
-snakeheadImg.src = "snake2.png";
+snakeheadImg.src = "/img2/snake2.png";
 
 let snake = [];
 
