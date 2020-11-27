@@ -13,7 +13,7 @@ const boxXelements = Math.floor(boxWidth / elementWidth);
 const boxYelements = Math.floor(boxHeight / elementHeight);
 const boxEnemyCount = 5;
 const boxFriendCount = 50;
-const backGroundColor = "green";
+const backGroundColor = "purple";
 var cvs = document.createElement('canvas');
   
 // load audio files 
