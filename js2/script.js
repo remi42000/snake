@@ -1,6 +1,6 @@
 //youtube channel : Code Explained
-// Code The Snake Game Using JavaScript and HTML5 ..
-// put double snake ...
+// Code The Snake Game Using JavaScript and HTML5
+// put double snake 
 var gameSpeed = 100;
 
 const boxWidth = 600;  //600    
