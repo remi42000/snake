@@ -306,4 +306,3 @@ function draw(recursive = false, isFriend = null) {
 
 let game = setInterval(draw, gameSpeed);
 
-//hello world
