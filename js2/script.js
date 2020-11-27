@@ -1,5 +1,5 @@
 //youtube channel : Code Explained
-// Code The Snake Game Using JavaScript and HTML5
+// Code The Snake Game Using JavaScript and HTML5 ..
 // put double snake
 var gameSpeed = 100;
 
