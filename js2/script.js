@@ -1,7 +1,7 @@
 //youtube channel : Code Explained
 // Code The Snake Game Using JavaScript and HTML5
 // put double snake 
-var gameSpeed = 100;
+var gameSpeed = 101;
 
 const boxWidth = 600;  //600    
 const boxHeight = 600;  //600
@@ -13,7 +13,7 @@ const boxXelements = Math.floor(boxWidth / elementWidth);
 const boxYelements = Math.floor(boxHeight / elementHeight);
 const boxEnemyCount = 5;
 const boxFriendCount = 50;
-const backGroundColor = "purple";
+const backGroundColor = "black";
 var cvs = document.createElement('canvas');
   
 // load audio files 
