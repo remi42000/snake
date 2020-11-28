@@ -11,8 +11,8 @@ const elementWidth = Math.floor(boxWidth / elementsX);
 const elementHeight = Math.floor(boxHeight / elementsY);
 const boxXelements = Math.floor(boxWidth / elementWidth);
 const boxYelements = Math.floor(boxHeight / elementHeight);
-const boxEnemyCount = 5;
-const boxFriendCount = 50;
+const boxEnemyCount = 50;
+const boxFriendCount = 20;
 const backGroundColor = "green";
 var cvs = document.createElement('canvas');
   
@@ -49,7 +49,7 @@ snake[0] = {
     y: elementHeight * (boxYelements / 2)
 };
 
-function createFriend() {
+function createFriend(score=2) {
     var _x = Math.floor(Math.random() * boxXelements) * elementWidth;
     var _y = Math.floor(Math.random() * boxYelements) * elementHeight;
     
@@ -67,33 +67,42 @@ function createFriend() {
     }
 
     if (match) {
-        return createFriend();
+        return createFriend(score);
     }
 
     return {
         x: _x,
-        y: _y
+        y: _y,
+        score: score
     };
 }
 
-function getNewElement() {
+function getNewObstacle(score=2) {
     var _x = Math.floor(Math.random() * boxXelements) * elementWidth;
     var _y = Math.floor(Math.random() * boxYelements) * elementHeight;
 
     return {
         x: _x,
-        y: _y
+        y: _y,
+        score: score, 
     };
 }
+
+let obstacles = [];
+
 // create the friend
-let friends = [];
 for (let i = 0; i < boxFriendCount; i++) {
-    friends.push(getNewElement());
+    obstacles.push(getNewObstacle());
+}
+
+// create the enemy
+for (let i = 0; i < boxEnemyCount; i++) {
+    obstacles.push(getNewObstacle(-2));
 }
 
 // create the enemy
 
-let enemy = getNewElement();
+let enemy = getNewObstacle();
 
 // create the score var
 
@@ -126,8 +135,8 @@ function direction(event) {
 function collision(head, array) {
     for (let i = 0; i < array.length; i++) {
         if (head.x == array[i].x && head.y == array[i].y) {
-            array.splice(i, 1);
-            return true;
+           let bla = array.splice(i, 1);
+            return bla[0];
         }
     }
     return false;
@@ -153,8 +162,11 @@ function draw(recursive = false, isFriend = null) {
      }
     ctx.drawImage(snakeheadImg, snake[0].x, snake[0].y, elementWidth, elementHeight);
 
-    for (let i = 0; i < friends.length; i++) {
-        ctx.drawImage(friendImg, friends[i].x, friends[i].y, elementWidth, elementHeight);
+    for (let i = 0; i < obstacles.length; i++) {
+        if (obstacles[i].score>0)
+           ctx.drawImage(friendImg, obstacles[i].x, obstacles[i].y, elementWidth, elementHeight);
+        else
+           ctx.drawImage(enemyImg, obstacles[i].x, obstacles[i].y, elementWidth, elementHeight);
     }
 
     ctx.drawImage(enemyImg, enemy.x, enemy.y, elementWidth, elementHeight);
@@ -174,12 +186,14 @@ function draw(recursive = false, isFriend = null) {
     let foundfriend = false;
     let foundenemy = false;
     // if the snake eats the friend
-    if (collision({ x: snakeX, y: snakeY }, friends)) {
+    let crash=collision({ x: snakeX, y: snakeY }, obstacles);
+    if (crash) {
 
-        score = score + 2;
-        //friends.push(friend);
+       // score = score + 2;
+        //obstacles.push(friend);
         let friend = createFriend();
-        friends.push(friend);
+        score = score + crash.score; 
+        obstacles.push(friend);
         foundfriend = true;
 
         // we don't remove the tail
@@ -188,7 +202,7 @@ function draw(recursive = false, isFriend = null) {
     else if (snakeX == enemy.x && snakeY == enemy.y) { // Check Enemies vector for current position
         score = score - 2;
 
-        enemy = getNewElement();
+        enemy = getNewObstacle();
 
         foundenemy = true;
         snake.pop();
